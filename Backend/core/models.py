@@ -28,6 +28,7 @@ class Municipality(models.Model):
 class Hosting(models.Model):
     id_hosting = models.IntegerField(primary_key=True)
     id_municipality = models.ForeignKey(Municipality, on_delete=models.CASCADE, default=None)
+    id_ofert = models.ForeignKey(Ofert, on_delete=models.CASCADE, default=None)
     name = models.CharField(max_length=25)
     description = models.TextField()
     department = models.CharField(max_length=25)
@@ -42,7 +43,7 @@ class Hosting(models.Model):
 class Tourist(models.Model):
     id_tourist = models.IntegerField(primary_key=True)
     id_municipality = models.ForeignKey(Municipality, on_delete=models.CASCADE, default=None)
-    id_ofert_site = models.IntegerField()
+    id_ofert = models.ForeignKey(Ofert, on_delete=models.CASCADE, default=None)
     name = models.CharField(max_length=30)
     direction = models.CharField(max_length=30)
     department = models.CharField(max_length=30)
@@ -55,7 +56,7 @@ class Tourist(models.Model):
 class Activity(models.Model):
     id_activity = models.IntegerField(primary_key=True)
     id_municipality = models.ForeignKey(Municipality, on_delete=models.CASCADE, default=None)
-    id_ofert_activity = models.IntegerField()
+    id_ofert = models.ForeignKey(Ofert, on_delete=models.CASCADE, default=None)
     name = models.CharField(max_length=30)
     rating = models.FloatField(max_length=1)
     type_actvity = models.CharField(max_length=30)
@@ -67,7 +68,7 @@ class Activity(models.Model):
 
 class Restaurant(models.Model):
     id_restaurant = models.IntegerField(primary_key=True)
-    id_ofert_restaurant = models.IntegerField()
+    id_ofert = models.ForeignKey(Ofert, on_delete=models.CASCADE, default=None)
     name = models.CharField(max_length=30)
     direction = models.CharField(max_length=30)
     department = models.CharField(max_length=30, default=None)
