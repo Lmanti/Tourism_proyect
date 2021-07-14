@@ -11,7 +11,8 @@ class UserSerializer(serializers.ModelSerializer):
                 'last_name',
                 'date_birth',
                 'nationality',
-                'phone_number')
+                'phone_number'
+                )
 
 class OfertSerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,7 +21,8 @@ class OfertSerializer(serializers.ModelSerializer):
                 'in_ofert',
                 'end_ofert',
                 'discount',
-                'name')
+                'name'
+                )
 
 class MunicipalitySerializer(serializers.ModelSerializer):
     class Meta:
@@ -28,24 +30,29 @@ class MunicipalitySerializer(serializers.ModelSerializer):
         fields = ('id_municipality',
                 'name',
                 'image',
-                'desciption')
-
+                'desciption'
+                )
 
 class HostingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hosting
         fields = ('id_hosting',
+                'id_municipality',
+                'id_ofert',
                 'name',
                 'description',
                 'department',
                 'municipality',
                 'rating',
-                'price_per_night')
+                'price_per_night'
+                )
 
 class TouristSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tourist
         fields = ('id_tourist',
+                'id_municipality',
+                'id_ofert',
                 'name',
                 'direction',
                 'department',
@@ -53,12 +60,15 @@ class TouristSerializer(serializers.ModelSerializer):
                 'cost',
                 'rating',
                 'schedule',
-                'tipe_site_touristic')
+                'tipe_site_touristic'
+                )
 
 class ActivitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Activity
         fields = ('id_activity',
+                'id_municipality',
+                'id_ofert',
                 'name',
                 'rating',
                 'type_actvity',
@@ -73,28 +83,39 @@ class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
         fields = ('id_restaurant',
+                'id_ofert',
                 'name',
                 'direction',
                 'department',
                 'municipality',
                 'schedule',
                 'rating',
-                'type_food',
+                'type_food'
                 )
 
 class DiscoverySerializer(serializers.ModelSerializer):
     class Meta:
         model = Discovery
         fields = ('id_discovery',
+                'id_user',
+                'id_municipality',
                 'name',
                 'direction',
                 'rating',
-                'description')
+                'description'
+                )
 
 class ReservationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reservation
-        field = ('id_reservation',
+        fields = ('id_reservation',
+                'id_user',
+                'id_tourist',
+                'id_activity',
+                'id_hosting',
+                'id_restaurant',
+                'id_ofert',
                 'hour_reservation',
-                'duration_reservation')
+                'duration_reservation'
+                )
 

@@ -8,14 +8,15 @@ class User(models.Model):
     password = models.CharField(max_length=20)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    date_birth = models.DateField()
+    date_birth = models.CharField(max_length=30)
+    # date_birth = models.DateField() ==> CORRECTO!
     nationality = models.CharField(max_length=50)
     phone_number = models.IntegerField()
 
 class Ofert(models.Model):
     id_ofert = models.IntegerField(primary_key=True)
-    in_ofert = models.DateField()
-    end_ofert = models.DateField()
+    in_ofert = models.CharField(max_length=30)
+    end_ofert = models.CharField(max_length=30)
     discount = models.FloatField(max_length=5)
     name = models.CharField(max_length=30)
 
@@ -50,7 +51,8 @@ class Tourist(models.Model):
     municipality = models.CharField(max_length=30)
     cost = models.FloatField()
     rating = models.FloatField(max_length=1)
-    schedule = models.DateTimeField()
+    schedule = models.CharField(max_length=30)
+    # schedule = models.DateTimeField() ==> CORRECTO!
     tipe_site_touristic = models.CharField(max_length=30)
 
 class Activity(models.Model):
@@ -61,8 +63,10 @@ class Activity(models.Model):
     rating = models.FloatField(max_length=1)
     type_actvity = models.CharField(max_length=30)
     cost = models.FloatField()
-    schedule = models.DateTimeField()
-    duration_activity = models.DateTimeField()
+    schedule = models.CharField(max_length=30)
+    # schedule = models.DateTimeField() ==> CORRECTO!
+    duration_activity = models.CharField(max_length=30)
+    # duration_activity = models.DateTimeField() ==> CORRECTO!
     department = models.CharField(max_length=30)
     municipality = models.CharField(max_length=30, default=None)
 
@@ -73,7 +77,8 @@ class Restaurant(models.Model):
     direction = models.CharField(max_length=30)
     department = models.CharField(max_length=30, default=None)
     municipality = models.CharField(max_length=30)
-    schedule = models.DateTimeField()
+    schedule = models.CharField(max_length=30)
+    # schedule = models.DateTimeField() ==> CORRECTO!
     rating = models.FloatField(max_length=1)
     type_food = models.CharField(max_length=30)
     municipality_restaurant = models.ManyToManyField(Municipality)
@@ -88,13 +93,15 @@ class Discovery(models.Model):
     description = models.TextField()
 
 class Reservation(models.Model):
-    id_reservation = models.IntegerField(primary_key=True, default=None)
-    id_user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
-    id_tourist = models.ForeignKey(Tourist, on_delete=models.CASCADE, default=None)
-    id_activity = models.ForeignKey(Activity, on_delete=models.CASCADE, default=None)
-    id_hosting = models.ForeignKey(Hosting, on_delete=models.CASCADE, default=None)
-    id_restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, default=None)
-    id_ofert = models.ForeignKey(Ofert, on_delete=models.CASCADE, default=None)
-    hour_reservation = models.DateTimeField(auto_now=True)
-    duration_reservation = models.DateTimeField(auto_now=True)
+    id_reservation = models.IntegerField(primary_key=True)
+    id_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    id_tourist = models.ForeignKey(Tourist, on_delete=models.CASCADE)
+    id_activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
+    id_hosting = models.ForeignKey(Hosting, on_delete=models.CASCADE)
+    id_restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    id_ofert = models.ForeignKey(Ofert, on_delete=models.CASCADE)
+    hour_reservation = models.CharField(max_length=30)
+    # hour_reservation = models.DateTimeField(auto_now=True) ==> CORRECTO!
+    duration_reservation = models.CharField(max_length=30)
+    # duration_reservation = models.DateTimeField(auto_now=True) ==> CORRECTO!
 
